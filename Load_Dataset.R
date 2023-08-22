@@ -17,19 +17,27 @@ needs(readr,
 
 
 ## 1) CARICAMENTO DATASET
-data = read.csv("data.csv")
+wbcd <- read.csv("data.csv", header=T, stringsAsFactors=F)
 
-# Analisi veloce degli attributi presenti e della loro tipologia 
-str(data)
-head(data)
-sapply(data, class)
+
+#### structure
+
+str(wbcd)
+
+#### summary
+
+summary(wbcd)
+
+#### head
+
+knitr::kable(head(wbcd))
 
 # Factoring dell'attributo target "diagnosis"
 data$diagnosis = factor(data$diagnosis)
 sapply(data, class)
 
-# Rimozione dell'ultima colonna la quale presenta valori nulli 
-data[,33] = NULL 
+# Rimozione NULL Data
+wbcd$X <- NULL
 
 
 
