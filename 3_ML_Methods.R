@@ -73,3 +73,10 @@ model_pca_nnet <- train(diagnosis~.,
 pred_pca_nnet <- predict(model_pca_nnet, test)
 cm_pca_nnet <- confusionMatrix(pred_pca_nnet, test$diagnosis, positive = "M") ## Errore: valore di "positive" non è presente nel dataset test$diagnosis
 cm_pca_nnet
+
+####Confrontare l'accuratezza di tutti i metodi
+
+col <- c("#ed3b3b", "#0099ff")
+par(mfrow=c(3,5))
+fourfoldplot(cm_kmeans$table, color = col, conf.level = 0, margin = 1, main=paste("KMeans  (",round(cm_kmeans$overall[1]*100),"%)",sep=""))
+fourfoldplot(cm_pca_nnet$table, color = col, conf.level = 0, margin = 1, main=paste("Rete Neurale (",round(cm_pca_nnet$overall[1]*100),"%)",sep=""))
